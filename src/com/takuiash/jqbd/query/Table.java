@@ -3,6 +3,7 @@ package com.takuiash.jqbd.query;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.takuiash.jqbd.query.helpers.builders.TableCreateBuilder;
 import com.takuiash.jqbd.query.helpers.column.COBJ;
 import com.takuiash.jqbd.query.helpers.column.ColumnList;
 import com.takuiash.jqbd.query.select.Select;
@@ -45,11 +46,12 @@ public class Table {
 	/**
 	 * TODO Create the table if not exists
 	 * 
-	 * @param columnList
+	 * @param columns
 	 * @return {@link Integer}
+	 * @throws SQLException 
 	 */
-	public int create(ColumnList columnList) {
-		return 0;
+	public int create(ColumnList columns) throws SQLException {
+		return new ExecutorWork().execute(build(columns), connection);
 	}
 	
 	/**
@@ -121,4 +123,17 @@ public class Table {
 	 */
 	public int truncate() throws SQLException { return new Truncate(new ExecutorWork(), this).execute(); }
 
+	/**
+	 * TODO Returns the query string.
+	 * 
+	 * @return {@link String}
+	 */
+	public String build(ColumnList columns) {
+		StringBuilder query = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
+		query.append(this.name);
+		
+		query.append(TableCreateBuilder.build(columns));
+		
+		return query.toString();
+	}
 }

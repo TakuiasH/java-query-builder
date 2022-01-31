@@ -14,7 +14,7 @@ public interface Repository<T> {
 
 	public Table getTable();
 
-	public int createTable();
+	public int createTable() throws SQLException;
 	
 	public Select<T> select();
 	

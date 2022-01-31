@@ -27,7 +27,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 		return table; 
 	}
 	
-	public int createTable() {
+	public int createTable() throws SQLException {
 		return table.create(((DatabaseEntity) entityBase).getColumnList());
 	}
 	
