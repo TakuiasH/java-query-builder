@@ -2,9 +2,9 @@ package example.examples.update;
 
 import java.sql.SQLException;
 
-import com.takuiash.jqbd.jdbc.query.helpers.column.COBJ;
-import com.takuiash.jqbd.jdbc.worker.search.generic.SelectData;
-import com.takuiash.jqbd.table.Table;
+import com.takuiash.jqbd.query.Table;
+import com.takuiash.jqbd.query.helpers.column.COBJ;
+import com.takuiash.jqbd.worker.search.generic.SelectData;
 
 public class QBUpdate {
 

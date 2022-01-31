@@ -1,9 +1,9 @@
 package example.models.entities;
 
-import com.takuiash.jqbd.entity.DatabaseEntity;
-import com.takuiash.jqbd.jdbc.query.helpers.column.Column;
-import com.takuiash.jqbd.jdbc.query.helpers.column.ColumnList;
-import com.takuiash.jqbd.jdbc.query.helpers.column.Option;
+import com.takuiash.jqbd.orm.DatabaseEntity;
+import com.takuiash.jqbd.query.helpers.column.Column;
+import com.takuiash.jqbd.query.helpers.column.ColumnList;
+import com.takuiash.jqbd.query.helpers.column.Option;
 
 public class UserEntity implements DatabaseEntity {
 

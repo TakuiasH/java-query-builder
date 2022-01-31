@@ -2,8 +2,8 @@ package example.examples.select;
 
 import java.sql.SQLException;
 
-import com.takuiash.jqbd.jdbc.worker.search.generic.SelectData;
-import com.takuiash.jqbd.table.Table;
+import com.takuiash.jqbd.query.Table;
+import com.takuiash.jqbd.worker.search.generic.SelectData;
 
 public class QBSelect {
 
