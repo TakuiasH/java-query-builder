@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import com.takuiash.jqbd.connector.Connector;
 import com.takuiash.jqbd.query.Table;
 
-import example.examples.delete.ORMDelete;
-import example.examples.delete.QBDelete;
-import example.examples.insert.ORMInsert;
-import example.examples.insert.QBInsert;
-import example.examples.select.ORMSelect;
-import example.examples.select.QBSelect;
-import example.examples.update.ORMUpdate;
-import example.examples.update.QBUpdate;
+import example.examples.ORM.ORMDelete;
+import example.examples.ORM.ORMInsert;
+import example.examples.ORM.ORMSelect;
+import example.examples.ORM.ORMUpdate;
+import example.examples.QB.QBDelete;
+import example.examples.QB.QBInsert;
+import example.examples.QB.QBSelect;
+import example.examples.QB.QBUpdate;
 import example.models.entities.UserEntity;
 
 public class Main {

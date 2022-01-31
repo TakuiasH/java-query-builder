@@ -1,4 +1,4 @@
-package example.examples.delete;
+package example.examples.ORM;
 
 import java.sql.Connection;
 import java.sql.SQLException;

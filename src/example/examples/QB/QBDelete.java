@@ -1,4 +1,4 @@
-package example.examples.delete;
+package example.examples.QB;
 
 import java.sql.SQLException;
 
