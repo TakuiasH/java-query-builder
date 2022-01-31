@@ -14,6 +14,7 @@ import example.examples.select.ORMSelect;
 import example.examples.select.QBSelect;
 import example.examples.update.ORMUpdate;
 import example.examples.update.QBUpdate;
+import example.models.entities.UserEntity;
 
 public class Main {
 
@@ -24,6 +25,8 @@ public class Main {
 		try {
 			Connection conn = connector.getConnection();
 			Table table = connector.table("Test_Table");
+			
+			table.create(new UserEntity().getColumnList());
 			
 			ORMInsert.execute(conn);
 			QBInsert.execute(table);

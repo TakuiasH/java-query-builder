@@ -39,8 +39,6 @@ public class Truncate {
 		builder.append("TRUNCATE TABLE ");
 		builder.append(table.getName());
 		builder.append(";");
-
-		System.out.println(builder.toString());
 		
 		return builder.toString();
 	}

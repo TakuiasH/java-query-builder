@@ -10,19 +10,26 @@ public class TableCreateBuilder {
 	
 	public static StringBuilder build(ColumnList list) {
 		StringBuilder query = new StringBuilder(" (");
+		
 		String separator = "";
 		for(Column column : list.getColumns(true)) {
+			
 			query.append(separator);
 			separator = ", ";
 			
 			query.append(column.getFieldName());
 			
+			query.append(" ");
 			query.append(column.getFieldType().getSqlite());
-			query.append("(");
-			query.append(column.getSize());
-			if(column.getFieldType() == FieldType.DOUBLE)
-				query.append(", 2)");
-			query.append(")");
+			
+			if(column.getSize() != null) {
+				query.append("(");
+				query.append(column.getSize());
+				
+				if(column.getFieldType() == FieldType.DOUBLE)
+					query.append(", 2)");
+				query.append(")");
+			}
 			
 			for(Option option : column.getOptions()) {
 				query.append(" ");
@@ -30,7 +37,7 @@ public class TableCreateBuilder {
 			}
 			
 			if(column.hasDefault()) {
-				query.append("DEFAULT ");
+				query.append(" DEFAULT ");
 				
 				if(column.getDefault() instanceof String)
 					query.append("'" + column.getDefault() + "'");

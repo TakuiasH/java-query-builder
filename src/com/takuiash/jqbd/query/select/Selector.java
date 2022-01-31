@@ -268,9 +268,7 @@ public class Selector<T> implements Select<T> {
 		}
 		
 		builder.append(";");
-		
-		System.out.println(builder.toString());
-		
+				
 		return builder.toString();
 	}
 	

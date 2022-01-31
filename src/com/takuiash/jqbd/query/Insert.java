@@ -78,8 +78,6 @@ public class Insert {
 		builder.append(table.getName());
 		builder.append(InsertValueBuilder.build(insertions));
 		builder.append(";");
-
-		System.out.println(builder.toString());
 		
 		return builder.toString();
 	}

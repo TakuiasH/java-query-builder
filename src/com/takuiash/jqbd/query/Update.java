@@ -223,8 +223,6 @@ public class Update<T> {
 		builder.append(UpdateValueBuilder.build(values));
 		builder.append(ConditionBuilder.buid(conditions));
 		builder.append(";");
-
-		System.out.println(builder.toString());
 		
 		return builder.toString();
 	}

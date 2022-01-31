@@ -133,7 +133,7 @@ public class Table {
 		query.append(this.name);
 		
 		query.append(TableCreateBuilder.build(columns));
-		
+				
 		return query.toString();
 	}
 }

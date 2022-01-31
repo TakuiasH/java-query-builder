@@ -39,8 +39,6 @@ public class Drop {
 		builder.append("DROP TABLE ");
 		builder.append(table.getName());
 		builder.append(";");
-
-		System.out.println(builder.toString());
 		
 		return builder.toString();
 	}

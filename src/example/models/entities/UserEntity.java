@@ -2,6 +2,7 @@ package example.models.entities;
 
 import com.takuiash.jqbd.orm.DatabaseEntity;
 import com.takuiash.jqbd.query.helpers.column.Column;
+import com.takuiash.jqbd.query.helpers.column.Column.FieldType;
 import com.takuiash.jqbd.query.helpers.column.ColumnList;
 import com.takuiash.jqbd.query.helpers.column.Option;
 
@@ -49,9 +50,9 @@ public class UserEntity implements DatabaseEntity {
 	public ColumnList getColumnList() {
 		ColumnList columns = new ColumnList();
 		
-		columns.add(new Column("id").addOption(Option.NOT_NULL).addOption(Option.PRIMARY));
-		columns.add(new Column("username").addOption(Option.NOT_NULL));
-		columns.add(new Column("locale").setDefault("en"));
+		columns.add(new Column("id", FieldType.INT).addOption(Option.NOT_NULL).addOption(Option.PRIMARY).addOption(Option.AUTO_INCREMENT));
+		columns.add(new Column("username", FieldType.VARCHAR).addOption(Option.NOT_NULL));
+		columns.add(new Column("locale", FieldType.VARCHAR).setDefault("en"));
 		
 		return columns;
 	}

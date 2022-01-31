@@ -1,9 +1,10 @@
 package com.takuiash.jqbd.query.helpers.column;
 
 public enum Option {
-	PRIMARY(""),
-	NOT_NULL(""),
-	UNIQUE("");
+	PRIMARY("PRIMARY KEY"),
+	AUTO_INCREMENT("AUTOINCREMENT"),
+	NOT_NULL("NOT NULL"),
+	UNIQUE("UNIQUE");
 
 	private final String tag;
 	

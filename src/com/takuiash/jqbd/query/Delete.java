@@ -175,8 +175,6 @@ public class Delete {
 		builder.append(table.getName());
 		builder.append(ConditionBuilder.buid(conditions));
 		builder.append(";");
-
-		System.out.println(builder.toString());
 		
 		return builder.toString();
 	}

@@ -55,7 +55,7 @@ public class Column {
 		return this.fieldType;
 	}
 	
-	public int getSize() {
+	public Integer getSize() {
 		return this.size;
 	}
 	
@@ -68,7 +68,7 @@ public class Column {
 	public enum FieldType {
 		VARCHAR("VARCHAR", "VARCHAR"),
 		TEXT("TEXT", "TEXT"),
-		INT("INT", "INT"),
+		INT("INT", "INTEGER"),
 		DOUBLE("DOUBLE", "DECIMAL");
 
 		private final String mysql, sqlite;
