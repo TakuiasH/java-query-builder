@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+group 'com.takuiash.jqdb'
+version '2.0.3-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
