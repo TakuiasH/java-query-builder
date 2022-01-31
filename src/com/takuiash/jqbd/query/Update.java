@@ -23,7 +23,7 @@ public class Update<T> {
 	protected final Work worker;
 	private final Repository<T> repository;
 
-	public ColumnMap values = new ColumnMap();
+	private ColumnMap values = new ColumnMap();
 	private ConditionMap conditions = new ConditionMap();
 
 	/**

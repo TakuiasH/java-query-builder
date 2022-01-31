@@ -34,6 +34,10 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 		return new Selector<>(new EntitySearcherWorker<T>(entityBase), table, entityBase);
 	}
 	
+	public Select<T> select(String... fields) {
+		return select().fields(fields);
+	}
+	
 	public Insert insert(){
 		return table.insert();
 	}

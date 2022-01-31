@@ -16,6 +16,7 @@ public interface Repository<T> {
 	public int createTable(ConnectionType type);
 	
 	public Select<T> select();
+	public Select<T> select(String... fields);
 	
 	public Insert insert();
 	public Insert insert(COBJ... values);
