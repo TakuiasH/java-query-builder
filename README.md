@@ -1,5 +1,7 @@
 # java-query-builder
 
+A java database query builder with two construction methods. (Object Query Builder or ORM Builder)
+
 [![](https://jitpack.io/v/TakuiasH/java-query-builder.svg)](https://jitpack.io/#TakuiasH/java-query-builder)
 
 ## Setup
