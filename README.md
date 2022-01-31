@@ -23,7 +23,7 @@ Maven
 ```xml
 <dependency>
     <groupId>com.github.TakuiasH</groupId>
-	  <artifactId>java-query-builder</artifactId>
-	  <version>v2.0.1</version>
+    <artifactId>java-query-builder</artifactId> 
+    <version>v2.0.1</version>
 </dependency>
 ```
