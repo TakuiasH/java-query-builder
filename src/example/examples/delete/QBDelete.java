@@ -2,7 +2,7 @@ package example.examples.delete;
 
 import java.sql.SQLException;
 
-import com.takuiash.orm.table.Table;
+import com.takuiash.jqbd.table.Table;
 
 public class QBDelete {
 

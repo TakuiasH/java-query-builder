@@ -3,8 +3,8 @@ package example;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.takuiash.orm.jdbc.connector.Connector;
-import com.takuiash.orm.table.Table;
+import com.takuiash.jqbd.jdbc.connector.Connector;
+import com.takuiash.jqbd.table.Table;
 
 import example.examples.delete.ORMDelete;
 import example.examples.delete.QBDelete;

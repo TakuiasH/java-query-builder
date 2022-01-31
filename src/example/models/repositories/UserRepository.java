@@ -5,8 +5,8 @@ import example.models.entities.UserEntity;
 
 import java.sql.Connection;
 
-import com.takuiash.orm.repository.AbstractRepository;
-import com.takuiash.orm.table.Table;
+import com.takuiash.jqbd.repository.AbstractRepository;
+import com.takuiash.jqbd.table.Table;
 
 public class UserRepository extends AbstractRepository<UserEntity> {
 
