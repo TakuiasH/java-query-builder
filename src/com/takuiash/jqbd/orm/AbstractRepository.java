@@ -2,6 +2,7 @@ package com.takuiash.jqbd.orm;
 
 import java.sql.SQLException;
 
+import com.takuiash.jqbd.connector.Connector.ConnectionType;
 import com.takuiash.jqbd.query.Delete;
 import com.takuiash.jqbd.query.Insert;
 import com.takuiash.jqbd.query.Table;
@@ -27,8 +28,8 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 		return table; 
 	}
 	
-	public int createTable() throws SQLException {
-		return table.create(((DatabaseEntity) entityBase).getColumnList());
+	public int createTable(ConnectionType type) throws SQLException {
+		return table.create(type, ((DatabaseEntity) entityBase).getColumnList());
 	}
 	
 	public Select<T> select() {

@@ -18,7 +18,7 @@ import example.models.entities.UserEntity;
 
 public class Main {
 
-	private static Connector connector = new Connector();
+	private static Connector connector = new Connector("test.db");
 	
 	public static void main(String[] args){
 		
@@ -26,7 +26,7 @@ public class Main {
 			Connection conn = connector.getConnection();
 			Table table = connector.table("Test_Table");
 			
-			table.create(new UserEntity().getColumnList());
+			table.create(connector.getConnectionType(), new UserEntity().getColumnList());
 			
 			ORMInsert.execute(conn);
 			QBInsert.execute(table);

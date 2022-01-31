@@ -1,6 +1,7 @@
 package com.takuiash.jqbd.query.helpers.builders;
 
 
+import com.takuiash.jqbd.connector.Connector.ConnectionType;
 import com.takuiash.jqbd.query.helpers.column.Column;
 import com.takuiash.jqbd.query.helpers.column.Column.FieldType;
 import com.takuiash.jqbd.query.helpers.column.ColumnList;
@@ -8,7 +9,7 @@ import com.takuiash.jqbd.query.helpers.column.Option;
 
 public class TableCreateBuilder {
 	
-	public static StringBuilder build(ColumnList list) {
+	public static StringBuilder build(ConnectionType type, ColumnList list) {
 		StringBuilder query = new StringBuilder(" (");
 		
 		String separator = "";
@@ -20,8 +21,11 @@ public class TableCreateBuilder {
 			query.append(column.getFieldName());
 			
 			query.append(" ");
-			query.append(column.getFieldType().getSqlite());
-			
+			if(type == ConnectionType.MYSQL)
+				query.append(column.getFieldType().getMysql());
+			else
+				query.append(column.getFieldType().getSqlite());
+
 			if(column.getSize() != null) {
 				query.append("(");
 				query.append(column.getSize());

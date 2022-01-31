@@ -2,6 +2,7 @@ package com.takuiash.jqbd.orm;
 
 import java.sql.SQLException;
 
+import com.takuiash.jqbd.connector.Connector.ConnectionType;
 import com.takuiash.jqbd.query.Delete;
 import com.takuiash.jqbd.query.Insert;
 import com.takuiash.jqbd.query.Table;
@@ -14,7 +15,7 @@ public interface Repository<T> {
 
 	public Table getTable();
 
-	public int createTable() throws SQLException;
+	public int createTable(ConnectionType type) throws SQLException;
 	
 	public Select<T> select();
 	
