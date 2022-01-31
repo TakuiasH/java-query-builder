@@ -6,11 +6,16 @@ import java.sql.Statement;
 
 public class ExecutorWork implements Work {
 
-	public int execute(String query, Connection connection) throws SQLException {
-		Statement st = connection.createStatement();
-		int i = st.executeUpdate(query);
-		st.close();		
-		return i;
+	public Integer execute(String query, Connection connection){
+		try {
+			Statement st = connection.createStatement();
+			int i = st.executeUpdate(query);
+			st.close();		
+			return i;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

@@ -1,7 +1,6 @@
 package example;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import com.takuiash.jqbd.connector.Connector;
 import com.takuiash.jqbd.query.Table;
@@ -22,29 +21,25 @@ public class Main {
 	
 	public static void main(String[] args){
 		
-		try {
-			Connection conn = connector.getConnection();
-			Table table = connector.table("Test_Table");
+		Connection conn = connector.getConnection();
+		Table table = connector.table("Test_Table");
 			
-			table.create(connector.getConnectionType(), new UserEntity().getColumnList());
+		table.create(connector.getConnectionType(), new UserEntity().getColumnList());
 			
-			ORMInsert.execute(conn);
-			QBInsert.execute(table);
+		ORMInsert.execute(conn);
+		QBInsert.execute(table);
 			
-			ORMSelect.execute(conn);
-			QBSelect.execute(table);
+		ORMSelect.execute(conn);
+		QBSelect.execute(table);
 			
-			ORMDelete.execute(conn);
-			QBDelete.execute(table);
+		ORMDelete.execute(conn);
+		QBDelete.execute(table);
 			
-			ORMUpdate.execute(conn);
-			QBUpdate.execute(table);
+		ORMUpdate.execute(conn);
+		QBUpdate.execute(table);
 			
-			//table.truncate();
-			//table.drop(); 
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
+		//table.truncate();
+		//table.drop(); 
+
 	}
 }

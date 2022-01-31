@@ -1,13 +1,11 @@
 package example.examples.QB;
 
-import java.sql.SQLException;
-
 import com.takuiash.jqbd.query.Table;
 import com.takuiash.jqbd.worker.search.generic.SelectData;
 
 public class QBSelect {
 
-	public static void execute(Table table) throws SQLException {
+	public static void execute(Table table) {
 		System.out.println("Executing select example with QueryBuilder style \n");
 		SelectData response = table.select().where("username", "ArantesXYZ").first();
 

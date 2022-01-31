@@ -1,7 +1,5 @@
 package com.takuiash.jqbd.orm;
 
-import java.sql.SQLException;
-
 import com.takuiash.jqbd.connector.Connector.ConnectionType;
 import com.takuiash.jqbd.query.Delete;
 import com.takuiash.jqbd.query.Insert;
@@ -15,7 +13,7 @@ public interface Repository<T> {
 
 	public Table getTable();
 
-	public int createTable(ConnectionType type) throws SQLException;
+	public int createTable(ConnectionType type);
 	
 	public Select<T> select();
 	
@@ -24,12 +22,12 @@ public interface Repository<T> {
 	public Delete delete();
 	public Update<SelectData> Update();
 	public Update<SelectData> Update(COBJ... values);
-	public int dropTable() throws SQLException;
-	public int truncateTable() throws SQLException;
+	public int dropTable();
+	public int truncateTable();
 
-	public T insert(T entity) throws SQLException;
-	public T insert(T entity, boolean includePrimary) throws SQLException;
-	public int delete(T entity) throws SQLException;
+	public T insert(T entity);
+	public T insert(T entity, boolean includePrimary);
+	public int delete(T entity);
 	public Update<T> update(T entity);
 
 }

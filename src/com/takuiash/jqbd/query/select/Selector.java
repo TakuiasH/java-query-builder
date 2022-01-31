@@ -210,7 +210,7 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link SearchResponse}
 	 * @throws SQLException
 	 */
-	public SearchResponse<T> search() throws SQLException { return worker.execute(build(), table.getConnection()); }
+	public SearchResponse<T> search() { return worker.execute(build(), table.getConnection()); }
 	
 	
 	/**
@@ -219,7 +219,7 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public List<T> all() throws SQLException {
+	public List<T> all() {
 		return this.search().all();
 	}
 
@@ -229,7 +229,7 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public T first() throws SQLException {
+	public T first() {
 		return this.limit(1).search().first();
 	}
 
@@ -239,7 +239,7 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public T last() throws SQLException {
+	public T last() {
 		return this.search().last();
 	}
 	

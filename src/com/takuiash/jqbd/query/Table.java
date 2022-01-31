@@ -52,7 +52,7 @@ public class Table {
 	 * @return {@link Integer}
 	 * @throws SQLException 
 	 */
-	public int create(ConnectionType type, ColumnList columns) throws SQLException {
+	public int create(ConnectionType type, ColumnList columns) {
 		return new ExecutorWork().execute(build(type, columns), connection);
 	}
 	
@@ -115,7 +115,7 @@ public class Table {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	public int drop() throws SQLException { return new Drop(new ExecutorWork(), this).execute(); }
+	public int drop() { return new Drop(new ExecutorWork(), this).execute(); }
 	
 	/**
 	 * TODO Make truncate table query.
@@ -123,7 +123,7 @@ public class Table {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	public int truncate() throws SQLException { return new Truncate(new ExecutorWork(), this).execute(); }
+	public int truncate() { return new Truncate(new ExecutorWork(), this).execute(); }
 
 	/**
 	 * TODO Returns the query string.

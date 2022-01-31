@@ -1,14 +1,13 @@
 package example.examples.ORM;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import example.models.entities.UserEntity;
 import example.models.repositories.UserRepository;
 
 public class ORMInsert {
 
-	public static void execute(Connection connection) throws SQLException {
+	public static void execute(Connection connection) {
 		System.out.println("Executing insert example with ORM style \n");
 		UserRepository repo = new UserRepository(connection);
 

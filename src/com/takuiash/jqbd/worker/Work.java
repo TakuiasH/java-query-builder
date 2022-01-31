@@ -16,6 +16,6 @@ public interface Work {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	int execute(String query, Connection connection) throws SQLException;
+	Integer execute(String query, Connection connection);
 	
 }

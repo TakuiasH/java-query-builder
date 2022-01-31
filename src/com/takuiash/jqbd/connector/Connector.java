@@ -41,18 +41,22 @@ public class Connector {
 		return this.connectionType;
 	}
 	
-	public Connection getConnection() throws SQLException {
-		if(connection == null) {
-			if(connectionType == ConnectionType.MYSQL)
-				connection = DriverManager.getConnection("jdbc:mysql://" + host + databaseName, username, password);
-			else
-				connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFile.getAbsolutePath());
+	public Connection getConnection() {
+		try {
+			if(connection == null) {
+				if(connectionType == ConnectionType.MYSQL)
+					connection = DriverManager.getConnection("jdbc:mysql://" + host + databaseName, username, password);
+				else
+					connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFile.getAbsolutePath());
+			}
+			return connection;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		
-		return connection;
+		return null;
 	}
 	
-	public Table table(String name) throws SQLException {
+	public Table table(String name) {
 		return new Table(getConnection(), name);
 	}
 	

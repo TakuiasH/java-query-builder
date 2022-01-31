@@ -18,5 +18,5 @@ public interface ReturningWork<T> {
 	 * @return {@link SearchResponse}
 	 * @throws SQLException
 	 */
-	SearchResponse<T> execute(String query, Connection connection) throws SQLException;
+	SearchResponse<T> execute(String query, Connection connection);
 }

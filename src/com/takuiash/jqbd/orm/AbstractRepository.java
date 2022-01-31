@@ -1,7 +1,5 @@
 package com.takuiash.jqbd.orm;
 
-import java.sql.SQLException;
-
 import com.takuiash.jqbd.connector.Connector.ConnectionType;
 import com.takuiash.jqbd.query.Delete;
 import com.takuiash.jqbd.query.Insert;
@@ -28,7 +26,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 		return table; 
 	}
 	
-	public int createTable(ConnectionType type) throws SQLException {
+	public int createTable(ConnectionType type) {
 		return table.create(type, ((DatabaseEntity) entityBase).getColumnList());
 	}
 	
@@ -56,19 +54,19 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 		return table.update(values);
 	}
 	
-	public int dropTable() throws SQLException {
+	public int dropTable() {
 		return table.drop();
 	}
 	
-	public int truncateTable() throws SQLException {
+	public int truncateTable() {
 		return table.truncate();
 	}
 	
-	public T insert(T entity) throws SQLException {
+	public T insert(T entity) {
 		return insert(entity, false);
 	}
 	
-	public T insert(T entity, boolean includePrimary) throws SQLException {
+	public T insert(T entity, boolean includePrimary) {
 		COBJ[] columnObjects = EntityConverter.getColumnObjects((DatabaseEntity) entity, includePrimary);
 				
 		int rowsCount = new Insert(new ExecutorWork(), table).value(columnObjects).execute();
@@ -79,7 +77,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 			return select().where(columnObjects).first();
 	}
 	
-	public int delete(T entity) throws SQLException {
+	public int delete(T entity) {
 		COBJ[] columnObjects = EntityConverter.getColumnObjects((DatabaseEntity) entity, false);
 
 		return table.delete().where(columnObjects).execute();

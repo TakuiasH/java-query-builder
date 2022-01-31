@@ -22,29 +22,34 @@ public class EntitySearcherWorker<T> implements ReturningWork<T> {
 	}
 	
 	@Override
-	public EntitySearchResponse<T> execute(String query, Connection connection) throws SQLException {
-		List<T> results = new ArrayList<T>();
+	public EntitySearchResponse<T> execute(String query, Connection connection) {
+		try {
+			List<T> results = new ArrayList<T>();
+			
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery(query);
 		
-		Statement st = connection.createStatement();
-		ResultSet rs = st.executeQuery(query);
-	
-		while (rs.next()) {
-			for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-				Method method = EntityConverter.getMethod(entityBase, MethodType.SET, rs.getMetaData().getColumnLabel(i));
-				
-				if(method == null) continue;
-				
-				try {
-					method.invoke(entityBase, rs.getObject(i));
-				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-					e.printStackTrace();
+			while (rs.next()) {
+				for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+					Method method = EntityConverter.getMethod(entityBase, MethodType.SET, rs.getMetaData().getColumnLabel(i));
+					
+					if(method == null) continue;
+					
+					try {
+						method.invoke(entityBase, rs.getObject(i));
+					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+						e.printStackTrace();
+					}
 				}
+				results.add(entityBase);	
 			}
-			results.add(entityBase);	
+			st.close();
+			
+			return new EntitySearchResponse<T>(results);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		st.close();
-		
-		return new EntitySearchResponse<T>(results);
+		return null;
 	}
 	
 }

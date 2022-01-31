@@ -50,7 +50,7 @@ public class Insert {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	public int execute() throws SQLException { return worker.execute(build(), table.getConnection()); }
+	public int execute() { return worker.execute(build(), table.getConnection()); }
 	
 	/**
 	 * TODO execute the query and return the inserted value with all arguments.
@@ -58,7 +58,7 @@ public class Insert {
 	 * @return {@link SelectData}
 	 * @throws SQLException
 	 */
-	public SelectData executeAndSelect() throws SQLException {
+	public SelectData executeAndSelect() {
 		int rowsCount = execute();
 		
 		if(rowsCount == 0)

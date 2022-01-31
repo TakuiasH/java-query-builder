@@ -1,14 +1,12 @@
 package example.examples.QB;
 
-import java.sql.SQLException;
-
 import com.takuiash.jqbd.query.Table;
 import com.takuiash.jqbd.query.helpers.column.COBJ;
 import com.takuiash.jqbd.worker.search.generic.SelectData;
 
 public class QBInsert {
 	
-	public static void execute(Table table) throws SQLException {
+	public static void execute(Table table) {
 		System.out.println("Executing insert example with QueryBuilder style \n");
 
 		int rowsCount = table.insert().value("username", "Freizao").execute(); //Default locale defined in UserEntity.

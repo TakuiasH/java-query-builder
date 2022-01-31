@@ -189,7 +189,7 @@ public class Update<T> {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	public int execute() throws SQLException { return worker.execute(build(), table.getConnection()); }
+	public int execute() { return worker.execute(build(), table.getConnection()); }
 	
 	/**
 	 * TODO execute the query and return the inserted value with all arguments.
@@ -199,7 +199,7 @@ public class Update<T> {
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("unchecked")
-	public T executeAndSelect() throws SQLException {
+	public T executeAndSelect() {
 		int rowsCount = execute();
 		
 		if(rowsCount == 0)

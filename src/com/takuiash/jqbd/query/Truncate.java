@@ -27,7 +27,7 @@ public class Truncate {
 	 * @return {@link Integer}
 	 * @throws SQLException
 	 */
-	public int execute() throws SQLException { return worker.execute(build(), table.getConnection()); }
+	public int execute() { return worker.execute(build(), table.getConnection()); }
 	
 	/**
 	 * TODO Returns the query string.

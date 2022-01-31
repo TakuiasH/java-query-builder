@@ -174,7 +174,7 @@ public interface Select<T> {
 	 * @return {@link SearchResponse}
 	 * @throws SQLException
 	 */
-	public SearchResponse<T> search() throws SQLException;
+	public SearchResponse<T> search();
 	
 	
 	/**
@@ -183,7 +183,7 @@ public interface Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public List<T> all() throws SQLException;
+	public List<T> all();
 
 	/**
 	 * TODO Return first response.
@@ -191,7 +191,7 @@ public interface Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public T first() throws SQLException;
+	public T first();
 
 	/**
 	 * TODO Return last response.
@@ -199,5 +199,5 @@ public interface Select<T> {
 	 * @return {@link SelectData} or {@link DatabaseEntity}
 	 * @throws SQLException
 	 */
-	public T last() throws SQLException;
+	public T last();
 }
