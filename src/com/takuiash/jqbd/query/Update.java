@@ -38,42 +38,149 @@ public class Update<T> {
 	}
 	
 	/**
-	 * TODO Add arguments to insertion.
+	 * TODO Add arguments to update.
 	 * 
 	 * @param column
 	 * @param value
-	 * @return {@link Insert}
+	 * @return {@link Update}
 	 */
 	public Update<T> value(String column, Object value) { values.put(column, value); return this; }
 	
 	/**
-	 * TODO Add arguments to insertion.
+	 * TODO Add arguments to update.
 	 * 
 	 * @param columnObjects
-	 * @return {@link Insert}
+	 * @return {@link Update}
 	 */
 	public Update<T> value(COBJ... columnObjects) { values.put(columnObjects); return this; }
 	
+	
+	/**
+	 * TODO Add 'where' argument.
+	 * 
+	 * @param expression
+	 * @return {@link Update}
+	 */
 	public Update<T> where(String expression) { conditions.put(ConditionType.WHERE, expression); return this; }
+	/**
+	 * TODO Add 'where' argument.
+	 * 
+	 * @param column
+	 * @param value
+	 * @return {@link Update}
+	 */
 	public Update<T> where(String column, Object value) { conditions.put(ConditionType.WHERE, column, value); return this; }
+	/**
+	 * TODO Add 'where' argument.
+	 * 
+	 * @param columnObjects
+	 * @return {@link Update}
+	 */
 	public Update<T> where(COBJ... columnObjects) { conditions.put(ConditionType.WHERE, columnObjects); return this; }
+	/**
+	 * TODO Add 'where' argument.
+	 * 
+	 * @param condition
+	 * @return {@link Update}
+	 */
 	public Update<T> where(Condition condition) { conditions.put(ConditionType.WHERE, condition); return this; }
 	
+	/**
+	 * TODO Add 'or' argument.
+	 * 
+	 * @param expression
+	 * @return {@link Update}
+	 */
 	public Update<T> or(String expression) { conditions.put(ConditionType.OR, expression); return this; }
+	/**
+	 * TODO Add 'or' argument.
+	 * 
+	 * @param column
+	 * @param value
+	 * @return {@link Update}
+	 */
 	public Update<T> or(String column, Object value) { conditions.put(ConditionType.OR, column, value); return this; }
+	/**
+	 * TODO Add 'or' argument.
+	 * 
+	 * @param columnObjects
+	 * @return {@link Update}
+	 */
 	public Update<T> or(COBJ... columnObjects) { conditions.put(ConditionType.OR, columnObjects); return this; }
+	/**
+	 * TODO Add 'or' argument.
+	 * 
+	 * @param condition
+	 * @return {@link Update}
+	 */
 	public Update<T> or(Condition condition) { conditions.put(ConditionType.OR, condition); return this; }
 	
+	/**
+	 * TODO Add 'where not' argument.
+	 * 
+	 * @param expression
+	 * @return {@link Update}
+	 */
 	public Update<T> whereNot(String expression) { conditions.put(ConditionType.WHERE_NOT, expression); return this; }
+	/**
+	 * TODO Add 'where not' argument.
+	 * 
+	 * @param column
+	 * @param value
+	 * @return {@link Update}
+	 */
 	public Update<T> whereNot(String column, Object value) { conditions.put(ConditionType.WHERE_NOT, column, value); return this; }
+	/**
+	 * TODO Add 'where not' argument.
+	 * 
+	 * @param columnObjects
+	 * @return {@link Update}
+	 */
 	public Update<T> whereNot(COBJ... columnObjects) { conditions.put(ConditionType.WHERE_NOT, columnObjects); return this; }
+	/**
+	 * TODO Add 'where not' argument.
+	 * 
+	 * @param condition
+	 * @return {@link Update}
+	 */
 	public Update<T> whereNot(Condition condition) { conditions.put(ConditionType.WHERE_NOT, condition); return this; }
 	
+	/**
+	 * TODO Add 'or not' argument.
+	 * 
+	 * @param expression
+	 * @return {@link Update}
+	 */
 	public Update<T> orNot(String expression) { conditions.put(ConditionType.OR_NOT, expression); return this; }
+	/**
+	 * TODO Add 'or not' argument.
+	 * 
+	 * @param column
+	 * @param value
+	 * @return {@link Update}
+	 */
 	public Update<T> orNot(String column, Object value) { conditions.put(ConditionType.OR_NOT, column, value); return this; }
+	/**
+	 * TODO Add 'or not' argument.
+	 * 
+	 * @param columnObjects
+	 * @return {@link Update}
+	 */
 	public Update<T> orNot(COBJ... columnObjects) { conditions.put(ConditionType.OR_NOT, columnObjects); return this; }
+	/**
+	 * TODO Add 'or not' argument.
+	 * 
+	 * @param condition
+	 * @return {@link Update}
+	 */
 	public Update<T> orNot(Condition condition) { conditions.put(ConditionType.OR_NOT, condition); return this; }
 
+	/**
+	 * TODO Set the condition map
+	 * 
+	 * @param conditions
+	 * @return {@link Update}
+	 */
 	public Update<T> conditions(ConditionMap conditions) { this.conditions = conditions; return this; }
 	
 	/**

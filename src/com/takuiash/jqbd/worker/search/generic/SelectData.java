@@ -14,7 +14,7 @@ public class SelectData {
 		return values.get(column);
 	}
 	
-	public Map<String, Object> getValues() {
+	public Map<String, Object> all() {
 		return values;
 	}
 	

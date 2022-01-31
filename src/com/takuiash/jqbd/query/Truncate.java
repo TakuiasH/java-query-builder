@@ -4,6 +4,9 @@ import java.sql.SQLException;
 
 import com.takuiash.jqbd.worker.Work;
 
+/**
+ * @author THDev
+ */
 public class Truncate {
 
 	protected final Table table;
