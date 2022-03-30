@@ -22,7 +22,7 @@ dependencies {
 Gradle (Kotlin)
 ```kotlin
 dependencies {
-    compileOnly("com.github.DevNatan:java-query-builder:2.0.2")
+    compileOnly("com.github.TakuiasH:java-query-builder:2.0.2")
 }
 ```
 
