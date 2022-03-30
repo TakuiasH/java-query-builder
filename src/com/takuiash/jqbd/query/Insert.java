@@ -2,8 +2,8 @@ package com.takuiash.jqbd.query;
 
 import java.sql.SQLException;
 
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.builders.InsertValueBuilder;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
 import com.takuiash.jqbd.query.helpers.map.maps.ColumnMap;
 import com.takuiash.jqbd.worker.Work;
 import com.takuiash.jqbd.worker.search.generic.SelectData;
@@ -42,7 +42,7 @@ public class Insert {
 	 * @param columnObjects
 	 * @return {@link Insert}
 	 */
-	public Insert value(COBJ... columnObjects) { insertions.put(columnObjects); return this; }
+	public Insert value(Column... columnObjects) { insertions.put(columnObjects); return this; }
 	
 	/**
 	 * TODO execute the query and returns the count of rows affected

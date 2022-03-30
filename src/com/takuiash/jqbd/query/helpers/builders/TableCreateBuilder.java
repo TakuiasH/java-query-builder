@@ -2,51 +2,51 @@ package com.takuiash.jqbd.query.helpers.builders;
 
 
 import com.takuiash.jqbd.connector.Connector.ConnectionType;
-import com.takuiash.jqbd.query.helpers.column.Column;
-import com.takuiash.jqbd.query.helpers.column.Column.FieldType;
-import com.takuiash.jqbd.query.helpers.column.ColumnList;
-import com.takuiash.jqbd.query.helpers.column.Option;
+import com.takuiash.jqbd.query.helpers.Option;
+import com.takuiash.jqbd.query.helpers.Row;
+import com.takuiash.jqbd.query.helpers.TableSetup;
+import com.takuiash.jqbd.query.helpers.Row.FieldType;
 
 public class TableCreateBuilder {
 	
-	public static StringBuilder build(ConnectionType type, ColumnList list) {
+	public static StringBuilder build(ConnectionType type, TableSetup list) {
 		StringBuilder query = new StringBuilder(" (");
 		
 		String separator = "";
-		for(Column column : list.getColumns(true)) {
+		for(Row row : list.getRows(true)) {
 			
 			query.append(separator);
 			separator = ", ";
 			
-			query.append(column.getFieldName());
+			query.append(row.getName());
 			
 			query.append(" ");
 			if(type == ConnectionType.MYSQL)
-				query.append(column.getFieldType().getMysql());
+				query.append(row.getType().getMysql());
 			else
-				query.append(column.getFieldType().getSqlite());
+				query.append(row.getType().getSqlite());
 
-			if(column.getSize() != null) {
+			if(row.getSize() != null) {
 				query.append("(");
-				query.append(column.getSize());
+				query.append(row.getSize());
 				
-				if(column.getFieldType() == FieldType.DOUBLE)
+				if(row.getType() == FieldType.DOUBLE)
 					query.append(", 2)");
 				query.append(")");
 			}
 			
-			for(Option option : column.getOptions()) {
+			for(Option option : row.getOptions()) {
 				query.append(" ");
 				query.append(option.getTag());
 			}
 			
-			if(column.hasDefault()) {
+			if(row.hasDefault()) {
 				query.append(" DEFAULT ");
 				
-				if(column.getDefault() instanceof String)
-					query.append("'" + column.getDefault() + "'");
+				if(row.getDefault() instanceof String)
+					query.append("'" + row.getDefault() + "'");
 				else
-					query.append(column.getDefault());
+					query.append(row.getDefault());
 			}				
 		}
 		query.append(")");

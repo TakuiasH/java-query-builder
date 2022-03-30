@@ -2,7 +2,7 @@ package com.takuiash.jqbd.query.helpers.map.maps;
 
 import java.util.Map.Entry;
 
-import com.takuiash.jqbd.query.helpers.column.COBJ;
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.condition.Condition;
 import com.takuiash.jqbd.query.helpers.condition.ConditionType;
 import com.takuiash.jqbd.query.helpers.map.AbstractObjectMap;
@@ -29,23 +29,23 @@ public class ConditionMap extends AbstractObjectMap<ConditionType, Condition> {
 		this.put(type, new Condition().expression(expression));
 	}
 	
-	public void put(ConditionType type, COBJ... columnObjects) {
+	public void put(ConditionType type, Column... columnObjects) {
 		Condition condition = new Condition();
 		
-		for (COBJ cobj : columnObjects) {
+		for (Column cobj : columnObjects) {
 			condition.value(cobj.getColumn(), cobj.getValue());
 		}
 		
 		this.put(type, condition);
 	}
 	
-	public COBJ[] toColumnObjects(ConditionType type) {
-		COBJ[] result = new COBJ[size()];
+	public Column[] toColumnObjects(ConditionType type) {
+		Column[] result = new Column[size()];
 		
 		int i = 0;
 		
 		for(Entry<String, Object> entry : values.get(type).values().entrySet()) {
-			result[i] = COBJ.as(entry.getKey(), entry.getValue());
+			result[i] = Column.as(entry.getKey(), entry.getValue());
 			i++;
 		}
 		

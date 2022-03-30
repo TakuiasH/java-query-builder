@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.takuiash.jqbd.connector.Connector.ConnectionType;
+import com.takuiash.jqbd.query.helpers.Column;
+import com.takuiash.jqbd.query.helpers.TableSetup;
 import com.takuiash.jqbd.query.helpers.builders.TableCreateBuilder;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.column.ColumnList;
-import com.takuiash.jqbd.query.select.Select;
-import com.takuiash.jqbd.query.select.Selector;
 import com.takuiash.jqbd.worker.ExecutorWork;
 import com.takuiash.jqbd.worker.search.generic.GenericSearchWorker;
 import com.takuiash.jqbd.worker.search.generic.SelectData;
@@ -52,7 +50,7 @@ public class Table {
 	 * @return {@link Integer}
 	 * @throws SQLException 
 	 */
-	public int create(ConnectionType type, ColumnList columns) {
+	public int create(ConnectionType type, TableSetup columns) {
 		return new ExecutorWork().execute(build(type, columns), connection);
 	}
 	
@@ -70,7 +68,7 @@ public class Table {
 	 * @param fields
 	 * @return {@link Select}
 	 */
-	public Select<SelectData> select() { return new Selector<>(new GenericSearchWorker(), this); }
+	public Select<SelectData> select() { return new Select<>(new GenericSearchWorker(), this); }
 	
 	/**
 	 * TODO Make insert query.
@@ -85,7 +83,7 @@ public class Table {
 	 * @param columnObjects
 	 * @return {@link Insert}
 	 */
-	public Insert insert(COBJ... columnObjects) { return insert().value(columnObjects); }
+	public Insert insert(Column... columnObjects) { return insert().value(columnObjects); }
 	
 	/**
 	 * TODO Make delete query.
@@ -107,7 +105,7 @@ public class Table {
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<SelectData> update(COBJ... columnObjects) { return update().value(columnObjects); }
+	public Update<SelectData> update(Column... columnObjects) { return update().value(columnObjects); }
 	
 	/**
 	 * TODO Make drop table query.
@@ -130,7 +128,7 @@ public class Table {
 	 * 
 	 * @return {@link String}
 	 */
-	public String build(ConnectionType type, ColumnList columns) {
+	public String build(ConnectionType type, TableSetup columns) {
 		StringBuilder query = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
 		query.append(this.name);
 		

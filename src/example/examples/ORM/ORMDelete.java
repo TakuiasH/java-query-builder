@@ -1,18 +1,17 @@
 package example.examples.ORM;
 
-import java.sql.Connection;
+import com.takuiash.jqbd.connector.Connector;
+import com.takuiash.jqbd.orm.Repository;
 
-import example.models.entities.UserEntity;
-import example.models.repositories.UserRepository;
+import example.models.User;
 
 public class ORMDelete {
 
-	public static void execute(Connection connection) {
+	public static void execute(Connector connector) {
 		System.out.println("Executing delete example with ORM style \n");
-
-		UserRepository repo = new UserRepository(connection);
+		Repository<User> repo = new Repository<User>(new User(), connector);
 		
-		int rowsCount = repo.delete(new UserEntity("Freizao"));
+		int rowsCount = repo.delete(new User("Freizao"));
 		System.out.println("Freizao delete | Rows affected: " + rowsCount + "\n");
 	}
 	

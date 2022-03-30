@@ -5,35 +5,38 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.column.Column;
+import com.takuiash.jqbd.query.helpers.Column;
+import com.takuiash.jqbd.query.helpers.Row;
 
 public class EntityConverter {
 	
-	public static <T> String[] getColumns(DatabaseEntity entity, boolean includePrimary) {		
-		List<String> columns = new ArrayList<String>();
-		entity.getColumnList().getColumns(includePrimary).forEach(c -> columns.add(c.getFieldName()));
-		return columns.toArray(String[]::new);
+	public static <T> String[] getRowsName(Entity entity, boolean includePrimary) {		
+		List<String> rows = new ArrayList<String>();
+		
+		entity.getSetup().getRows(includePrimary).forEach(c -> rows.add(c.getName()));
+		
+		return rows.toArray(String[]::new);
 	}
 	
-	public static <T> COBJ[] getColumnObjects(DatabaseEntity entity, boolean includePrimary) {
-		List<Column> columns = entity.getColumnList().getColumns(includePrimary);
-		Object[] values = getValues(entity, columns);
+	public static <T> Column[] getColumnObjects(Entity entity, boolean includePrimary) {
+		List<Row> rows = entity.getSetup().getRows(includePrimary);
 		
-		List<COBJ> columnObjects = new ArrayList<COBJ>();
+		Object[] values = getValues(entity, rows);
 		
-		for(int i = 0; i < columns.size(); i++) 		
-			columnObjects.add(COBJ.as(columns.get(i).getFieldName(), values[i]));
+		List<Column> columnObjects = new ArrayList<Column>();
 		
-		return columnObjects.toArray(COBJ[]::new);
+		for(int i = 0; i < rows.size(); i++) 		
+			columnObjects.add(Column.as(rows.get(i).getName(), values[i]));
+		
+		return columnObjects.toArray(Column[]::new);
 	}
 	
-	public static <T> Object[] getValues(DatabaseEntity entity, List<Column> columns) {
+	public static <T> Object[] getValues(Entity entity, List<Row> columns) {
 		Object[] values = new Object[columns.size()];
 		
 		for(int i = 0; i < columns.size(); i++) {
 			try {
-				values[i] = getMethod(entity, MethodType.GET, columns.get(i).getFieldName()).invoke(entity);
+				values[i] = getMethod(entity, MethodType.GET, columns.get(i).getName()).invoke(entity);
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
 			}

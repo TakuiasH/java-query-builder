@@ -2,12 +2,11 @@ package com.takuiash.jqbd.query;
 
 import java.sql.SQLException;
 
-import com.takuiash.jqbd.orm.DatabaseEntity;
+import com.takuiash.jqbd.orm.Entity;
 import com.takuiash.jqbd.orm.Repository;
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.builders.ConditionBuilder;
 import com.takuiash.jqbd.query.helpers.builders.UpdateValueBuilder;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.condition.Condition;
 import com.takuiash.jqbd.query.helpers.condition.ConditionType;
 import com.takuiash.jqbd.query.helpers.map.maps.ColumnMap;
 import com.takuiash.jqbd.query.helpers.map.maps.ConditionMap;
@@ -52,7 +51,7 @@ public class Update<T> {
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<T> value(COBJ... columnObjects) { values.put(columnObjects); return this; }
+	public Update<T> value(Column... columns) { values.put(columns); return this; }
 	
 	
 	/**
@@ -62,28 +61,14 @@ public class Update<T> {
 	 * @return {@link Update}
 	 */
 	public Update<T> where(String expression) { conditions.put(ConditionType.WHERE, expression); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Update}
-	 */
-	public Update<T> where(String column, Object value) { conditions.put(ConditionType.WHERE, column, value); return this; }
+
 	/**
 	 * TODO Add 'where' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<T> where(COBJ... columnObjects) { conditions.put(ConditionType.WHERE, columnObjects); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Update}
-	 */
-	public Update<T> where(Condition condition) { conditions.put(ConditionType.WHERE, condition); return this; }
+	public Update<T> where(Column... columns) { conditions.put(ConditionType.WHERE, columns); return this; }
 	
 	/**
 	 * TODO Add 'or' argument.
@@ -92,28 +77,15 @@ public class Update<T> {
 	 * @return {@link Update}
 	 */
 	public Update<T> or(String expression) { conditions.put(ConditionType.OR, expression); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Update}
-	 */
-	public Update<T> or(String column, Object value) { conditions.put(ConditionType.OR, column, value); return this; }
+
 	/**
 	 * TODO Add 'or' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<T> or(COBJ... columnObjects) { conditions.put(ConditionType.OR, columnObjects); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Update}
-	 */
-	public Update<T> or(Condition condition) { conditions.put(ConditionType.OR, condition); return this; }
+	public Update<T> or(Column... columns) { conditions.put(ConditionType.OR, columns); return this; }
+
 	
 	/**
 	 * TODO Add 'where not' argument.
@@ -122,28 +94,15 @@ public class Update<T> {
 	 * @return {@link Update}
 	 */
 	public Update<T> whereNot(String expression) { conditions.put(ConditionType.WHERE_NOT, expression); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Update}
-	 */
-	public Update<T> whereNot(String column, Object value) { conditions.put(ConditionType.WHERE_NOT, column, value); return this; }
+
 	/**
 	 * TODO Add 'where not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<T> whereNot(COBJ... columnObjects) { conditions.put(ConditionType.WHERE_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Update}
-	 */
-	public Update<T> whereNot(Condition condition) { conditions.put(ConditionType.WHERE_NOT, condition); return this; }
+	public Update<T> whereNot(Column... columns) { conditions.put(ConditionType.WHERE_NOT, columns); return this; }
+
 	
 	/**
 	 * TODO Add 'or not' argument.
@@ -152,28 +111,15 @@ public class Update<T> {
 	 * @return {@link Update}
 	 */
 	public Update<T> orNot(String expression) { conditions.put(ConditionType.OR_NOT, expression); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Update}
-	 */
-	public Update<T> orNot(String column, Object value) { conditions.put(ConditionType.OR_NOT, column, value); return this; }
+
 	/**
 	 * TODO Add 'or not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Update}
 	 */
-	public Update<T> orNot(COBJ... columnObjects) { conditions.put(ConditionType.OR_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Update}
-	 */
-	public Update<T> orNot(Condition condition) { conditions.put(ConditionType.OR_NOT, condition); return this; }
+	public Update<T> orNot(Column... columns) { conditions.put(ConditionType.OR_NOT, columns); return this; }
+
 
 	/**
 	 * TODO Set the condition map
@@ -195,7 +141,7 @@ public class Update<T> {
 	 * TODO execute the query and return the inserted value with all arguments.
 	 * @param <T>
 	 * 
-	 * @return {@link SelectData} OR {@link DatabaseEntity}
+	 * @return {@link SelectData} OR {@link Entity}
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("unchecked")

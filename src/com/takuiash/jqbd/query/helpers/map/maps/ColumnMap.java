@@ -3,21 +3,13 @@ package com.takuiash.jqbd.query.helpers.map.maps;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.column.DuplicatedColumnException;
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.map.AbstractObjectMap;
 
 public class ColumnMap extends AbstractObjectMap<String, Object> {
 	
-	public void put(String column, Object value) {
-		if(containsKey(column))
-			throw new DuplicatedColumnException();
-		
-		super.put(column, value);
-	}
-	
-	public void put(COBJ... columnObjects) {
-		for (COBJ cobj : columnObjects) {
+	public void put(Column... columnObjects) {
+		for (Column cobj : columnObjects) {
 			this.put(cobj.getColumn(), cobj.getValue());
 		}
 	}
@@ -26,13 +18,13 @@ public class ColumnMap extends AbstractObjectMap<String, Object> {
 		this.values.remove(column);
 	}
 	
-	public COBJ[] toColumnObjects() {
-		COBJ[] result = new COBJ[size()];
+	public Column[] toColumnObjects() {
+		Column[] result = new Column[size()];
 		
 		int i = 0;
 		
 		for(Entry<String, Object> entry : values.entrySet()) {
-			result[i] = COBJ.as(entry.getKey(), entry.getValue());
+			result[i] = Column.as(entry.getKey(), entry.getValue());
 			i++;
 		}
 		

@@ -1,14 +1,12 @@
-package com.takuiash.jqbd.query.select;
+package com.takuiash.jqbd.query;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.takuiash.jqbd.orm.DatabaseEntity;
+import com.takuiash.jqbd.orm.Entity;
 import com.takuiash.jqbd.orm.EntityConverter;
-import com.takuiash.jqbd.query.Table;
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.builders.ConditionBuilder;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.condition.Condition;
 import com.takuiash.jqbd.query.helpers.condition.ConditionType;
 import com.takuiash.jqbd.query.helpers.map.maps.ConditionMap;
 import com.takuiash.jqbd.worker.ReturningWork;
@@ -18,7 +16,7 @@ import com.takuiash.jqbd.worker.search.generic.SelectData;
 /**
  * @author THDev
  */
-public class Selector<T> implements Select<T> {
+public class Select<T> {
 
 	protected final Table table;
 	protected final ReturningWork<T> worker;
@@ -34,7 +32,7 @@ public class Selector<T> implements Select<T> {
 	 * @param worker
 	 * @param table
 	 */
-	public Selector(ReturningWork<T> worker, Table table) {
+	public Select(ReturningWork<T> worker, Table table) {
 		this.table = table;
 		this.worker = worker;
 		this.entityBase = null;
@@ -45,7 +43,7 @@ public class Selector<T> implements Select<T> {
 	 * @param table
 	 * @param entityBase
 	 */
-	public Selector(ReturningWork<T> worker, Table table, T entityBase) {
+	public Select(ReturningWork<T> worker, Table table, T entityBase) {
 		this.table = table;
 		this.worker = worker;
 		this.entityBase = entityBase;
@@ -66,28 +64,15 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link Select}
 	 */
 	public Select<T> where(String expression) { conditions.put(ConditionType.WHERE, expression); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Select}
-	 */
-	public Select<T> where(String column, Object value) { conditions.put(ConditionType.WHERE, column, value); return this; }
+
 	/**
 	 * TODO Add 'where' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Select}
 	 */
-	public Select<T> where(COBJ... columnObjects) { conditions.put(ConditionType.WHERE, columnObjects); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Select}
-	 */
-	public Select<T> where(Condition condition) { conditions.put(ConditionType.WHERE, condition); return this; }
+	public Select<T> where(Column... columns) { conditions.put(ConditionType.WHERE, columns); return this; }
+
 	
 	/**
 	 * TODO Add 'or' argument.
@@ -96,28 +81,14 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link Select}
 	 */
 	public Select<T> or(String expression) { conditions.put(ConditionType.OR, expression); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Select}
-	 */
-	public Select<T> or(String column, Object value) { conditions.put(ConditionType.OR, column, value); return this; }
+
 	/**
 	 * TODO Add 'or' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Select}
 	 */
-	public Select<T> or(COBJ... columnObjects) { conditions.put(ConditionType.OR, columnObjects); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Select}
-	 */
-	public Select<T> or(Condition condition) { conditions.put(ConditionType.OR, condition); return this; }
+	public Select<T> or(Column... columns) { conditions.put(ConditionType.OR, columns); return this; }
 	
 	/**
 	 * TODO Add 'where not' argument.
@@ -126,29 +97,16 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link Select}
 	 */
 	public Select<T> whereNot(String expression) { conditions.put(ConditionType.WHERE_NOT, expression); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Select}
-	 */
-	public Select<T> whereNot(String column, Object value) { conditions.put(ConditionType.WHERE_NOT, column, value); return this; }
+
+
 	/**
 	 * TODO Add 'where not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Select}
 	 */
-	public Select<T> whereNot(COBJ... columnObjects) { conditions.put(ConditionType.WHERE_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Select}
-	 */
-	public Select<T> whereNot(Condition condition) { conditions.put(ConditionType.WHERE_NOT, condition); return this; }
-	
+	public Select<T> whereNot(Column... columns) { conditions.put(ConditionType.WHERE_NOT, columns); return this; }
+
 	/**
 	 * TODO Add 'or not' argument.
 	 * 
@@ -156,29 +114,16 @@ public class Selector<T> implements Select<T> {
 	 * @return {@link Select}
 	 */
 	public Select<T> orNot(String expression) { conditions.put(ConditionType.OR_NOT, expression); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Select}
-	 */
-	public Select<T> orNot(String column, Object value) { conditions.put(ConditionType.OR_NOT, column, value); return this; }
+
 	/**
 	 * TODO Add 'or not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Select}
 	 */
-	public Select<T> orNot(COBJ... columnObjects) { conditions.put(ConditionType.OR_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Select}
-	 */
-	public Select<T> orNot(Condition condition) { conditions.put(ConditionType.OR_NOT, condition); return this; }
+	public Select<T> orNot(Column... columns) { conditions.put(ConditionType.OR_NOT, columns); return this; }
 
+	
 	/**
 	 * TODO Set the condition map
 	 * 
@@ -216,7 +161,7 @@ public class Selector<T> implements Select<T> {
 	/**
 	 * TODO Return all response.
 	 * 
-	 * @return {@link SelectData} or {@link DatabaseEntity}
+	 * @return {@link SelectData} or {@link Entity}
 	 * @throws SQLException
 	 */
 	public List<T> all() {
@@ -226,7 +171,7 @@ public class Selector<T> implements Select<T> {
 	/**
 	 * TODO Return first response.
 	 * 
-	 * @return {@link SelectData} or {@link DatabaseEntity}
+	 * @return {@link SelectData} or {@link Entity}
 	 * @throws SQLException
 	 */
 	public T first() {
@@ -236,7 +181,7 @@ public class Selector<T> implements Select<T> {
 	/**
 	 * TODO Return last response.
 	 * 
-	 * @return {@link SelectData} or {@link DatabaseEntity}
+	 * @return {@link SelectData} or {@link Entity}
 	 * @throws SQLException
 	 */
 	public T last() {
@@ -283,7 +228,7 @@ public class Selector<T> implements Select<T> {
 					return builder;
 				}
 				
-				fields = EntityConverter.getColumns((DatabaseEntity) entityBase, true);
+				fields = EntityConverter.getRowsName((Entity) entityBase, true);
 			}
 						
 			String separator = "";

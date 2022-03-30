@@ -1,4 +1,4 @@
-package com.takuiash.jqbd.query.helpers.column;
+package com.takuiash.jqbd.query.helpers;
 
 public enum Option {
 	PRIMARY("PRIMARY KEY"),

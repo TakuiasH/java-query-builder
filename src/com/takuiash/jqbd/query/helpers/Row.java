@@ -1,27 +1,35 @@
-package com.takuiash.jqbd.query.helpers.column;
+package com.takuiash.jqbd.query.helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Column {
+public class Row {
 
-	private final String fieldName;
-	private final FieldType fieldType;
+	private final String name;
+	private final FieldType type;
 	
 	private Object defaults;
 	private Integer size;
 	
 	private List<Option> options = new ArrayList<Option>();
 	
-	public Column(String fieldName, FieldType fieldType) {
-		this.fieldType = fieldType;
-		this.fieldName = fieldName;
+	public Row(String name, FieldType type) {
+		this.name = name;
+		this.type = type;
 	}
 	
-	public Column addOption(Option option) {
-		if(!options.contains(option))
-			this.options.add(option);
+	public Row(String name, int size, FieldType type) {
+		this.name = name;
+		this.size = size;
+		this.type = type;
+	}
+	
+	public Row addOptions(Option... options) {
+		for(Option option : options) {
+			if(!this.options.contains(option))
+				this.options.add(option);
+		}
 		
 		return this;
 	}
@@ -34,8 +42,8 @@ public class Column {
 		return options.contains(Option.PRIMARY);
 	}
 	
-	public String getFieldName() {
-		return fieldName;
+	public String getName() {
+		return name;
 	}
 	
 	public List<Option> getOptions() {
@@ -46,30 +54,30 @@ public class Column {
 		return defaults;
 	}
 	
-	public Column setSize(int size) {
+	public Row setSize(int size) {
 		this.size = size;
 		return this;
 	}
 	
-	public FieldType getFieldType() {
-		return this.fieldType;
+	public FieldType getType() {
+		return this.type;
 	}
 	
 	public Integer getSize() {
 		return this.size;
 	}
 	
-	public Column setDefault(Object defaults) {
+	public Row setDefault(Object defaults) {
 		this.defaults = defaults;
-		
 		return this;
 	}
 	
 	public enum FieldType {
+		UUID("UUID", "UUID"),
 		VARCHAR("VARCHAR", "VARCHAR"),
 		TEXT("TEXT", "TEXT"),
 		INT("INT", "INTEGER"),
-		DOUBLE("DOUBLE", "DECIMAL");
+		DOUBLE("DOUBLE", "DOUBLE");
 
 		private final String mysql, sqlite;
 		

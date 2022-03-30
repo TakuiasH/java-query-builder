@@ -1,7 +1,7 @@
 package example.examples.QB;
 
 import com.takuiash.jqbd.query.Table;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.worker.search.generic.SelectData;
 
 public class QBInsert {
@@ -13,7 +13,7 @@ public class QBInsert {
 		System.out.println("Freizao insertion | Rows affected: " + rowsCount + "\n");
 
 		
-		SelectData user2  = table.insert(COBJ.as("username", "KUMApt"), COBJ.as("locale", "pt")).executeAndSelect(); //Return the data with all arguments passed. (Primary keys, Defaults...)
+		SelectData user2  = table.insert(Column.as("username", "KUMApt"), Column.as("locale", "pt")).executeAndSelect(); //Return the data with all arguments passed. (Primary keys, Defaults...)
 		System.out.println("User 2: " + user2.get("id") + " : " + user2.get("username") + " : " + user2.get("locale") + "\n");
 	}
 	

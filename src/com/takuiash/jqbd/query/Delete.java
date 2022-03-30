@@ -2,9 +2,8 @@ package com.takuiash.jqbd.query;
 
 import java.sql.SQLException;
 
+import com.takuiash.jqbd.query.helpers.Column;
 import com.takuiash.jqbd.query.helpers.builders.ConditionBuilder;
-import com.takuiash.jqbd.query.helpers.column.COBJ;
-import com.takuiash.jqbd.query.helpers.condition.Condition;
 import com.takuiash.jqbd.query.helpers.condition.ConditionType;
 import com.takuiash.jqbd.query.helpers.map.maps.ConditionMap;
 import com.takuiash.jqbd.worker.Work;
@@ -35,28 +34,14 @@ public class Delete {
 	 * @return {@link Delete}
 	 */
 	public Delete where(String expression) { conditions.put(ConditionType.WHERE, expression); return this; }
+
 	/**
 	 * TODO Add 'where' argument.
 	 * 
-	 * @param column
-	 * @param value
+	 * @param columns
 	 * @return {@link Delete}
 	 */
-	public Delete where(String column, Object value) { conditions.put(ConditionType.WHERE, column, value); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param columnObjects
-	 * @return {@link Delete}
-	 */
-	public Delete where(COBJ... columnObjects) { conditions.put(ConditionType.WHERE, columnObjects); return this; }
-	/**
-	 * TODO Add 'where' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Delete}
-	 */
-	public Delete where(Condition condition) { conditions.put(ConditionType.WHERE, condition); return this; }
+	public Delete where(Column... columns) { conditions.put(ConditionType.WHERE, columns); return this; }
 	
 	/**
 	 * TODO Add 'or' argument.
@@ -65,29 +50,14 @@ public class Delete {
 	 * @return {@link Delete}
 	 */
 	public Delete or(String expression) { conditions.put(ConditionType.OR, expression); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Delete}
-	 */
-	public Delete or(String column, Object value) { conditions.put(ConditionType.OR, column, value); return this; }
+
 	/**
 	 * TODO Add 'or' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Delete}
 	 */
-	public Delete or(COBJ... columnObjects) { conditions.put(ConditionType.OR, columnObjects); return this; }
-	/**
-	 * TODO Add 'or' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Delete}
-	 */
-	public Delete or(Condition condition) { conditions.put(ConditionType.OR, condition); return this; }
-	
+	public Delete or(Column... columns) { conditions.put(ConditionType.OR, columns); return this; }
 	/**
 	 * TODO Add 'where not' argument.
 	 * 
@@ -95,28 +65,14 @@ public class Delete {
 	 * @return {@link Delete}
 	 */
 	public Delete whereNot(String expression) { conditions.put(ConditionType.WHERE_NOT, expression); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Delete}
-	 */
-	public Delete whereNot(String column, Object value) { conditions.put(ConditionType.WHERE_NOT, column, value); return this; }
+
 	/**
 	 * TODO Add 'where not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Delete}
 	 */
-	public Delete whereNot(COBJ... columnObjects) { conditions.put(ConditionType.WHERE_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'where not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Delete}
-	 */
-	public Delete whereNot(Condition condition) { conditions.put(ConditionType.WHERE_NOT, condition); return this; }
+	public Delete whereNot(Column... columns) { conditions.put(ConditionType.WHERE_NOT, columns); return this; }
 	
 	/**
 	 * TODO Add 'or not' argument.
@@ -125,28 +81,14 @@ public class Delete {
 	 * @return {@link Delete}
 	 */
 	public Delete orNot(String expression) { conditions.put(ConditionType.OR_NOT, expression); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param column
-	 * @param value
-	 * @return {@link Delete}
-	 */
-	public Delete orNot(String column, Object value) { conditions.put(ConditionType.OR_NOT, column, value); return this; }
+
 	/**
 	 * TODO Add 'or not' argument.
 	 * 
 	 * @param columnObjects
 	 * @return {@link Delete}
 	 */
-	public Delete orNot(COBJ... columnObjects) { conditions.put(ConditionType.OR_NOT, columnObjects); return this; }
-	/**
-	 * TODO Add 'or not' argument.
-	 * 
-	 * @param condition
-	 * @return {@link Delete}
-	 */
-	public Delete orNot(Condition condition) { conditions.put(ConditionType.OR_NOT, condition); return this; }
+	public Delete orNot(Column... columns) { conditions.put(ConditionType.OR_NOT, columns); return this; }
 
 	/**
 	 * TODO Set the condition map

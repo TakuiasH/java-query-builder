@@ -1,6 +1,5 @@
 package example;
 
-import java.sql.Connection;
 
 import com.takuiash.jqbd.connector.Connector;
 import com.takuiash.jqbd.query.Table;
@@ -13,7 +12,6 @@ import example.examples.QB.QBDelete;
 import example.examples.QB.QBInsert;
 import example.examples.QB.QBSelect;
 import example.examples.QB.QBUpdate;
-import example.models.entities.UserEntity;
 
 public class Main {
 
@@ -21,22 +19,27 @@ public class Main {
 	
 	public static void main(String[] args){
 		
-		Connection conn = connector.getConnection();
 		Table table = connector.table("Test_Table");
 			
-		table.create(connector.getConnectionType(), new UserEntity().getColumnList());
+		/*TableSetup setup = new TableSetup("users");
+		
+		setup.addRow(new Row("id", FieldType.INT).addOptions(Option.PRIMARY, Option.AUTO_INCREMENT));
+		setup.addRow(new Row("username", FieldType.VARCHAR).addOptions(Option.UNIQUE));
+		setup.addRow(new Row("locale", FieldType.VARCHAR).setDefault("en"));		
+		
+		table.create(connector.getConnectionType(), setup);*/
 			
-		ORMInsert.execute(conn);
+		
 		QBInsert.execute(table);
-			
-		ORMSelect.execute(conn);
 		QBSelect.execute(table);
-			
-		ORMDelete.execute(conn);
 		QBDelete.execute(table);
-			
-		ORMUpdate.execute(conn);
 		QBUpdate.execute(table);
+
+		
+		ORMInsert.execute(connector);
+		ORMSelect.execute(connector);
+		ORMDelete.execute(connector);
+		ORMUpdate.execute(connector);
 			
 		//table.truncate();
 		//table.drop(); 

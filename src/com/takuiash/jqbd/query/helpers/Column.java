@@ -1,17 +1,17 @@
-package com.takuiash.jqbd.query.helpers.column;
+package com.takuiash.jqbd.query.helpers;
 
-public class COBJ {
+public class Column {
 
 	private final String column;
 	private final Object value;
 	
-	public COBJ(String column, Object value) {
+	public Column(String column, Object value) {
 		this.column = column;
 		this.value = value;
 	}
 	
-	public static COBJ as(String column, Object value) {
-		return new COBJ(column, value);
+	public static Column as(String column, Object value) {
+		return new Column(column, value);
 	}
 	
 	public String getColumn() {
